@@ -1,0 +1,17 @@
+
+cc_binary {
+    name: "KeystoreDuressService",
+    init_rc : ["keystoreWipe.rc"],
+    defaults: [
+        "vold_default_flags",
+        "vold_default_libs",
+        "keystore2_use_latest_aidl_ndk_shared",
+    ],
+    srcs: ["KeystoreWipe.cpp"],
+    static_libs: ["libvold"],
+    shared_libs: [
+        "android.security.maintenance-ndk",
+        "libbinder_ndk",
+        "libkeymint_support",
+    ],
+}
