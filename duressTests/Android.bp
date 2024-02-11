@@ -1,0 +1,35 @@
+cc_binary {
+    name: "duressKeystoreTest",
+    cpp_std: "c++17",
+    defaults: [
+        "vold_default_flags",
+        "vold_default_libs",
+        "keystore2_use_latest_aidl_ndk_shared",
+    ],
+    srcs: ["duressKeystoreTest.cpp"],
+    static_libs: ["libvold"],
+    shared_libs: [
+        "android.security.maintenance-ndk",
+        "libbinder_ndk",
+        "libkeymint_support",
+    ],
+}
+
+java_test_host {
+    name: "DuressKeystoreHostTest",
+    srcs: [
+        "src/**/*.java",
+    ],
+    libs: [
+        "tradefed",
+        "compatibility-tradefed",
+        "compatibility-host-util",
+    ],
+    static_libs: [
+        "cts-host-utils",
+        "frameworks-base-hostutils",
+    ],
+    test_suites: [
+        "general-tests",
+    ],
+}
